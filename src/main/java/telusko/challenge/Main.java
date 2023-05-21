@@ -13,18 +13,16 @@ public class Main {
         ps.addProduct(new Products("Apple", "Phone", "Red Table", 1));
         ps.addProduct(new Products("Dell", "Laptop", "Blue Table", 4));
 
-        //This method will return all the details of the all the Products that are there in list
         List<Products> products = ps.getAllProducts();
         products.forEach(System.out::println);
 
-        //This method will return all the details of the Product if you give the name of it
+
         ps.getProduct("Asus");
 
         ps.getProductWithText("black");
 
         ps.getProductWithPlace("Blue Table");
 
-        ps.getProuctOutofWarranty(3);
 
 
 
