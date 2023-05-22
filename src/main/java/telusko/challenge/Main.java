@@ -2,16 +2,70 @@ package telusko.challenge;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws SQLException {
+
+        Scanner sc = new Scanner(System.in);
+        int choice;
         ProductService ps = new ProductService();
-        ps.addProduct(new Products("Asus", "Laptop", "Black Table", 2));
-        ps.addProduct(new Products("Samsung", "Phone", "Brown Table", 5));
-        ps.addProduct(new Products("HP", "Laptop", "White Table", 3));
-        ps.addProduct(new Products("Apple", "Phone", "Red Table", 1));
-        ps.addProduct(new Products("Dell", "Laptop", "Blue Table", 4));
+        do{
+        System.out.println("++++Welcome to the Product Database++++");
+        System.out.println("Choose from any Options below: ");
+        System.out.println("1. Add a Product");
+        System.out.println("2. Get all Products");
+        System.out.println("3. Get Products by Text");
+        System.out.println("4. Get Products by Place");
+        System.out.println("5. Get Products by Warranty");
+        System.out.println("6. Get Products out of Warranty");
+
+
+        choice = sc.nextInt();
+
+        switch (choice) {
+            case '1':
+                System.out.println("Enter the Product Name: ");
+                String name = sc.next();
+                System.out.println("Enter the Product Type: ");
+                String type = sc.next();
+                System.out.println("Enter the Product Place: ");
+                String place = sc.next();
+                System.out.println("Enter the Product Warranty: ");
+                int warranty = sc.nextInt();
+                ps.addProduct(new Products(name, type, place, warranty));
+                break;
+            case '2':
+                ps.getAllProducts();
+                break;
+            case '3':
+                System.out.println("Enter the Product Name: ");
+                String t = sc.next();
+                ps.getProductWithText(t);
+                break;
+            case '4':
+                System.out.println("Enter the Product Place: ");
+                String pl = sc.next();
+
+                ps.getProductWithPlace(pl);
+                break;
+            case '5':
+                System.out.println("Enter the Warranty: ");
+                int w = sc.nextInt();
+                ps.getProductsByWarranty(w);
+                break;
+            case '6':
+                System.out.println("Enter the Warranty: ");
+                int wa = sc.nextInt();
+
+                ps.getProductsOutOfWarranty(wa);
+                break;
+            default:
+                System.out.println("Invalid Choice");
+
+        }
+    }while(choice != 0);
 
 
 
@@ -49,17 +103,6 @@ public class Main {
         for (Products p : products_by_warranty) {
             System.out.println(p);
         }
-
-
-
-
-
-
-
-
-
-
-
     }
 
 }
